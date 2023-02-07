@@ -1,0 +1,117 @@
+/*   
+  Local styles for wiki.audio
+  Written by (c) Petko Yotov 2022   www.pmwiki.org/support
+
+  This text is written for PmWiki; you can redistribute it and/or modify
+  it under the terms of the GNU General Public License as published
+  by the Free Software Foundation; either version 3 of the License, or
+  (at your option) any later version. See pmwiki.php for full details
+  and lack of warranty.
+*/
+
+a[href*="sengpielaudio.com/"] {
+/*   background-color: #ffa; */
+}
+
+
+.trix-content a[href*="sengpielaudio.com/"]:after {
+/*   content: ' [wiki link due]'; */
+/*   color: red; */
+}
+
+
+.trix-content a[href*="sengpielaudio.com/"][href$=".pdf"]::after {
+/*   content: ' [pdf]'; */
+/*   color: red; */
+}
+
+@media screen and (min-width:360px) {
+  body[data-fullname="De.0001"] .allegro-content > div:first-child > figure:first-child,
+  body[data-fullname="En.0001"] .allegro-content > div:first-child > figure:first-child {
+    max-width: 180px;
+    float: right;
+  }
+
+  
+}
+
+table.gradient1st tbody,
+table.gradient2nd tbody  {
+  background: linear-gradient(red, yellow, green); 
+}
+
+table.gradient1st tbody tr:nth-child(2n) td,
+table.gradient2nd tbody tr:nth-child(2n) td {
+  background-color: white;
+}
+table.gradient1st tbody tr:nth-child(2n+1) td,
+table.gradient2nd tbody tr:nth-child(2n+1) td {
+  background-color: #f7f7f7;
+}
+
+table.gradient1st tbody tr,
+table.gradient2nd tbody tr {
+  background-color: transparent !important;
+}
+
+
+table.gradient1st tbody td:nth-child(1),
+table.gradient2nd tbody td:nth-child(2) {
+  background-color: transparent !important;
+}
+
+textarea {
+  max-width: 100%;
+  box-sizing: border-box;
+}
+
+
+h1:first-child, h2:first-child, h3:first-child, h4:first-child, h5:first-child, h6:first-child {
+  margin-top:0;
+}
+
+a.wikilink[href$="?action=aWatch"] {
+  filter: grayscale(1);
+}
+
+body[data-name$="RecentChanges"] #wikitext a {
+  text-decoration: none;
+}
+
+
+li > a[href*="?action=diff#diff"] + a.wikilink:after {
+  content: " (" attr(data-group) ")";
+  color: #888;
+  font-size: .9em;
+}
+
+
+.allegro-content:not([data-status="reviewed"],[data-status="hidden"]):before {
+  content: " ";
+  position: absolute;
+  top: 0;
+  bottom:0;
+  left:0;
+  right:0;
+  display: block;
+  z-index:5;
+/*   opacity: .3; */
+  pointer-events: none;
+  background-image: url(/?action=awatermark&wm=DRAFT);
+  background-size: 50%;
+}
+.allegro-content[data-status="hidden"] {
+  opacity: .7;
+}
+
+
+body[data-group="De"] .allegro-content:not([data-status="reviewed"],[data-status="hidden"]):before {
+  background-image: url(/?action=awatermark&wm=ENTWURF);
+}
+
+img, video, iframe {
+  max-width: 100%;  
+}
+
+
+
