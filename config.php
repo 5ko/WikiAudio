@@ -97,8 +97,8 @@ SDVA($Modules, array(
   'smtpmail' => 10,
   'authemail' => 20,
   'pmform' => 100,
-  'allegro' => array(1200, 'FormsGroup'=>'Forms'),
-  'biblio' => array(1400, 'pagename'=>'Biblio.*'),
+  'allegro' => array(1200, 'FormsGroup'=>'Forms', 'group'=>'-Site,-SiteAdmin,-Forms,-PmWiki'),
+  'biblio' => array(1400, 'name'=>'Biblio.*'),
   'pausegif' => array(1500, 'action'=>'browse'),
 ));
 
