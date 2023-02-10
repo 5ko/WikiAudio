@@ -84,8 +84,8 @@ include_once("local/debug.php");
 $PmForm['libcalc'] = 'saveto={$FullName} form=#calcform fmt=#calcpost';
 $PmForm['biblio'] = 'saveto={$FullName} form=#bform fmt=#bpost';
 
-# Remove second link question mark
-$LinkPageCreateFmt = "<a class='createlinktext' rel='nofollow' 
+# Remove second link question mark, add class .wikilink
+$LinkPageCreateFmt = "<a class='createlinktext wikilink' rel='nofollow' 
   title='\$LinkAlt' href='{\$PageUrl}'>\$LinkText</a>";
 # Add class .wikilink
 $LinkPageSelfFmt = "<a class='selflink wikilink' rel='nofollow' 
@@ -97,7 +97,7 @@ SDVA($Modules, array(
   'smtpmail' => 10,
   'authemail' => 20,
   'pmform' => 100,
-  'allegro' => array(1200, 'FormsGroup'=>'Forms', 'group'=>'-Site,-SiteAdmin,-Forms,-PmWiki'),
+  'allegro' => array(1200, 'FormsGroup'=>'Forms'),
   'biblio' => array(1400, 'name'=>'Biblio.*'),
   'pausegif' => array(1500, 'action'=>'browse'),
 ));
