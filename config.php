@@ -29,20 +29,20 @@ $FarmPubDirUrl = "$UrlScheme://{$_SERVER['SERVER_NAME']}/pub";
 $WikiDir = new PageStore('wiki.d/{$Group}/{$FullName}');
 
 
-##  If you want to have a custom skin, then set $Skin to the name
-##  of the directory (in pub/skins/) that contains your skin files.
-##  See PmWiki.Skins and Cookbook.Skins.
+## The current skin is not in pub/skins but in modules/skins
 $Skin = 'wikiaudioskin';
 
 ## Use a separate /modules location for configuration, styles, modules and skins
-$ModuleDir = "modules";
-$ModuleDirUrl = '/modules';
+$PmModules = array(
+  'dir' => "modules",
+  'dirurl' => '/modules',
+);
 $SkinLibDirs = array(
-  "$ModuleDir/skins/\$Skin"   => "$ModuleDirUrl/skins/\$Skin");
+  "{$PmModules['dir']}/skins/\$Skin"   => "{$PmModules['dirurl']}/skins/\$Skin");
 
-$LocalCSSDir = "$ModuleDir/WikiAudio/css";
-$LocalCSSDirUrl = "$ModuleDirUrl/WikiAudio/css";
-$LocalDir = "$ModuleDir/WikiAudio";
+$LocalCSSDir = "{$PmModules['dir']}/WikiAudio/css";
+$LocalCSSDirUrl = "{$PmModules['dirurl']}/WikiAudio/css";
+$LocalDir = "{$PmModules['dir']}/WikiAudio";
 
 ##  You'll probably want to set an administrative password that you
 ##  can use to get into password-protected pages.  Also, by default
@@ -55,7 +55,7 @@ $DefaultPasswords['admin'] = array(
 
 
 $DefaultPasswords['upload'] = 
-$DefaultPasswords['edit'] = array('id:*', '@readers', '@editors', '@patrons' );
+$DefaultPasswords['edit'] = array('@editors', '@patrons');
 
 $EnableCookieSecure = 1;
 $EnableCookieHTTPOnly = 1;
@@ -98,6 +98,7 @@ SDVA($Modules, array(
   'authemail' => 20,
   'pmform' => 100,
   'allegro' => array(1200, 'FormsGroup'=>'Forms'),
+  'js-lib' => 1210, # after allegro
   'biblio' => array(1400, 'name'=>'Biblio.*'),
   'pausegif' => array(1500, 'action'=>'browse'),
 ));
