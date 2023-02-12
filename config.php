@@ -49,10 +49,8 @@ $LocalDir = "{$PmModules['dir']}/WikiAudio";
 ##  the "attr" passwords for the PmWiki and Main groups are locked, so
 ##  an admin password is a good way to unlock those.  See PmWiki.Passwords
 ##  and PmWiki.PasswordsAdmin.
-$DefaultPasswords['admin'] = array(
-  '@admins',
-);
-
+$DefaultPasswords['admin'] = array( '@admins', );
+$DefaultPasswords['attr'] = array( '@admins', '@patrons' );
 
 $DefaultPasswords['upload'] = 
 $DefaultPasswords['edit'] = array('@editors', '@patrons');
@@ -158,20 +156,13 @@ $PmTOC['MaxLevel'] = 3;
 $PmTOC['NumberedHeadings'] = '1.1.1.1.1.1';
 $PmTOC['EnableBacklinks'] = 1;
 
-
-$Allegro['AnonymousNewPagePat'] = '??.*, ??-*.*, Test.*';
-
 $Allegro['SavePTV'] = "SourceUrl,InterLang,IsTrail,Status,Parent,SPOrder";
-
-
 
 $WikiStyleCSS[] = 'line-height';
 
-
-
 $EnableNotify = 1;
 $NotifyDelay = 120;
-$NotifyTimeFmt = '%d/%m %H:%M';
+$NotifyTimeFmt = '%a %d/%m %H:%M';
 
 $NotifyItemFmt =
   "* {\$Title}
