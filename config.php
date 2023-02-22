@@ -101,7 +101,7 @@ SDVA($Modules, array(
   'pausegif' => array(1500, 'action'=>'browse'),
 ));
 
-include_once("$FarmD/modules/modules/modules.php");
+include_once("modules/modules/modules.php");
 
 ##  PmWiki comes with graphical user interface buttons for editing;
 ##  to enable these buttons, set $EnableGUIButtons to 1.
@@ -192,6 +192,13 @@ function FmtTitle1($pn) {
   $title = PageVar($pn, '$Title');
   return utf8string($title, 0, 1);
 }
+
+$FmtPV['$ArticleName'] = 'FmtArticleName($group, $name)';
+function FmtArticleName($group, $name) {
+  if($group !== 'Talk') return "$group.$name";
+  return preg_replace('/^([^-]+)-(.*)$/', '$1.$2', $name);
+}
+
 
 
 
