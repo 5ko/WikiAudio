@@ -81,6 +81,7 @@ if($action != 'aedit')
   $LinkFunctions['mailto:'] = 'ObfuscateLinkIMap';
 $MarkupExpr['urlencode'] = 'rawurlencode(trim($params))';
 $MarkupExpr['quotedencode'] = 'rawurlencode(trim($args[0]))';
+include_once('scripts/pmform.php');
 
 $PmForm['libcalc'] = 'saveto={$FullName} form=#calcform fmt=#calcpost';
 $PmForm['biblio'] = 'saveto={$FullName} form=#bform fmt=#bpost';
@@ -105,7 +106,6 @@ SDVA($Modules, array(
   'dbhelper' => 0,
   'smtpmail' => 10,
   'authemail' => 20,
-  'pmform' => 100,
   'allegro' => array(1200, 'FormsGroup'=>'Forms'),
   'js-lib' => 1210, # after allegro
   'biblio' => array(1400, 'name'=>'Biblio.*'),
