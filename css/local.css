@@ -112,3 +112,39 @@ body[data-group="De"] .allegro-content:not([data-status="reviewed"],[data-status
 img, video, iframe {
   max-width: 100%;  
 }
+
+.feedbackpostheader {
+  background-color: #eee;
+  margin-top: 2em;
+  padding: .1em .4em;
+}
+
+.feedbackposttext {
+  padding: .4em .4em;
+}
+
+
+#msgfeedback,
+.msgfeedback {
+  background-color: #eee;
+  color: red;
+  font-weight: bold;
+  font-size: 1.5em;
+  padding: .1em .4em;
+}
+
+#msgfeedback, #feedbackform-wrap {
+  margin-top: 2em;
+}
+
+.lastposted .feedbackpostheader {
+  background-color: #fda;
+  
+}
+.lastposted .feedbackposttext {
+  background-color: #ffa;
+}
+
+.feedbackpost:has(input:checked) {
+  opacity: .3;
+}

@@ -9,8 +9,6 @@
   and lack of warranty.
 */
 
-// $EnableRedirect = 0;
-
 ##  $WikiTitle is the name that appears in the browser's title bar.
 $WikiTitle = 'Wiki.Audio';
 $XL['en']['SiteSlogan'] = "Audio tutorials, questions and documents on sound recording, studio technology, recording technology and sound engineering";
@@ -50,10 +48,10 @@ $LocalDir = "{$PmModules['dir']}/WikiAudio";
 ##  an admin password is a good way to unlock those.  See PmWiki.Passwords
 ##  and PmWiki.PasswordsAdmin.
 $DefaultPasswords['admin'] = array( '@admins', );
-$DefaultPasswords['attr'] = array( '@admins', '@patrons' );
+$DefaultPasswords['attr'] = array( '@editors', '@admins', '@patrons' );
 
 $DefaultPasswords['upload'] = 
-$DefaultPasswords['edit'] = array('@editors', '@patrons');
+$DefaultPasswords['edit'] = array('@authors', '@editors', '@patrons');
 
 $EnableCookieSecure = 1;
 $EnableCookieHTTPOnly = 1;
@@ -67,6 +65,7 @@ $EnableLocalTimes = 1; # Enable compact (short) local times, in the visitor's ti
 $DefaultGroup = 'En';
 $DefaultPage = 'En.En';
 
+
 ##  Unicode (UTF-8) allows the display of all languages and all alphabets.
 ##  Highly recommended for new wikis.
 include_once("$FarmD/scripts/xlpage-utf-8.php");
@@ -78,6 +77,10 @@ include_once("local/.auth.php");
 # Utility functions (Petko)
 include_once("local/debug.php");
 
+if($action != 'aedit')
+  $LinkFunctions['mailto:'] = 'ObfuscateLinkIMap';
+$MarkupExpr['urlencode'] = 'rawurlencode(trim($params))';
+$MarkupExpr['quotedencode'] = 'rawurlencode(trim($args[0]))';
 
 $PmForm['libcalc'] = 'saveto={$FullName} form=#calcform fmt=#calcpost';
 $PmForm['biblio'] = 'saveto={$FullName} form=#bform fmt=#bpost';
@@ -89,6 +92,14 @@ $LinkPageCreateFmt = "<a class='createlinktext wikilink' rel='nofollow'
 $LinkPageSelfFmt = "<a class='selflink wikilink' rel='nofollow' 
   title='\$LinkAlt' href='{\$PageUrl}'>\$LinkText</a>";
 
+
+$CaptchaImageCSS = "border: none; vertical-align:middle;";
+$EnableCaptchaImageDataURI = 1;
+$EnableCaptchaSession = 1;
+
+# disable self-created accounts
+$HandleActions['acreate'] = 'HandleBrowse'; 
+
 # Autologin config is in local/.auth.php
 SDVA($Modules, array(
   'dbhelper' => 0,
@@ -99,6 +110,9 @@ SDVA($Modules, array(
   'js-lib' => 1210, # after allegro
   'biblio' => array(1400, 'name'=>'Biblio.*'),
   'pausegif' => array(1500, 'action'=>'browse'),
+  'checklists' => array(1500, 'action'=>'browse'),
+  'feedback' => array(1400, 'group'=>'Test,En,De'),
+  'captcha' => array(1400),
 ));
 
 include_once("modules/modules/modules.php");
@@ -198,7 +212,6 @@ function FmtArticleName($group, $name) {
   if($group !== 'Talk') return "$group.$name";
   return preg_replace('/^([^-]+)-(.*)$/', '$1.$2', $name);
 }
-
 
 
 
